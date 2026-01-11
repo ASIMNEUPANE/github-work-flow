@@ -1,0 +1,19 @@
+name: Shell CI
+
+on:
+  pull_request:
+    branch: [ development ]
+
+jobs:
+  shellcheck:
+    runs-on: ubunto-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Install Shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run Shellcheck
+        run: shellcheck scripts/*.sh
